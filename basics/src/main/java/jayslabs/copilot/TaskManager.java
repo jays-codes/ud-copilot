@@ -71,6 +71,23 @@ public class TaskManager {
 	}
 
 	/**
+	 * Removes a task based on its description.
+	 *
+	 * @param description the description of the task to be removed
+	 * @return true if the task was found and removed, false if the task was not found
+	 */
+	public synchronized boolean removeTask(String description) {
+		Task task = findTaskByDescription(description);
+		if (task != null) {
+			tasks.remove(task);
+			logger.info("Task removed: " + description);
+			return true;
+		}
+		logger.warning("Task with description '" + description + "' not found.");
+		return false; // Task not found
+	}
+
+	/**
 	 * Returns an unmodifiable list of all tasks in the task manager.
 	 *
 	 * @return the list of tasks
