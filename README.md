@@ -3,6 +3,7 @@ Jay's proj repo for Github Copilot with Java and SpringBoot training (udemy)
 List below ARE NOT NOTES. They are topics covered as of latest.
 
 proj: clinicalsapi
+- modfied model relationships
 - generated models
 - fixed packaging error
 - demo project using copilot to generate springboot api project
