@@ -4,20 +4,33 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
-//inventory manager class that uses a map and id as key, and adds, removes, lists and updates a product
+/**
+ * Inventory manager class that uses a map with product ID as key,
+ * and provides methods to add, remove, list, and update products.
+ */
 public class InventoryManager {
 
-    //map to store products
+    // Map to store products
     private Map<Integer, Product> products;
 
-    //constructor to initialize the map
+    // Constructor to initialize the map
     public InventoryManager() {
         this.products = new HashMap<>();
     }
 
-    //method to add a product to the inventory
+    /**
+     * Adds a product to the inventory.
+     *
+     * @param product the product to add
+     * @return true if the product was added, false if the product already exists
+     * @throws IllegalArgumentException if the product is null
+     */
     public boolean addProduct(Product product) {
+        if (product == null) {
+            throw new IllegalArgumentException("Product cannot be null");
+        }
         if (products.containsKey(product.getId())) {
             return false;
         }
@@ -25,7 +38,12 @@ public class InventoryManager {
         return true;
     }
 
-    //method to remove a product from the inventory
+    /**
+     * Removes a product from the inventory.
+     *
+     * @param id the id of the product to remove
+     * @return true if the product was removed, false if the product does not exist
+     */
     public boolean removeProduct(int id) {
         if (!products.containsKey(id)) {
             return false;
@@ -34,65 +52,69 @@ public class InventoryManager {
         return true;
     }
 
-    //method to list all products in the inventory
+    /**
+     * Lists all products in the inventory.
+     *
+     * @return a list of all products
+     */
     public List<Product> listProducts() {
         return new ArrayList<>(products.values());
     }
 
-    //method to update the quantity of a product in the inventory
+    /**
+     * Updates the quantity of a product in the inventory.
+     *
+     * @param id the id of the product to update
+     * @param quantity the new quantity of the product
+     * @return true if the product was updated, false if the product does not exist
+     */
     public boolean updateProductQuantity(int id, int quantity) {
-        if (!products.containsKey(id)) {
-            return false;
-        }
-        Product product = products.get(id);
-        product.setQuantity(quantity);
-        return true;
+        return products.computeIfPresent(id, (key, product) -> {
+            product.setQuantity(quantity);
+            return product;
+        }) != null;
     }
 
-    //method to get a product by id
-    public Product getProductById(int id) {
-        return products.get(id);
+    /**
+     * Retrieves a product by its ID.
+     *
+     * @param id the id of the product to retrieve
+     * @return an Optional containing the product if found, or an empty Optional if not found
+     */
+    public Optional<Product> getProductById(int id) {
+        return Optional.ofNullable(products.get(id));
     }
 
-    //main method to test the inventory manager
+    /**
+     * Main method to test the InventoryManager class.
+     *
+     * @param args command line arguments
+     */
     public static void main(String[] args) {
-        InventoryManager inventoryManager = new InventoryManager();
+        try {
+            InventoryManager inventoryManager = new InventoryManager();
 
-        // Add products to the inventory
-        inventoryManager.addProduct(new Product(1, "Product 1", 10));
-        inventoryManager.addProduct(new Product(2, "Product 2", 20));
-        inventoryManager.addProduct(new Product(3, "Product 3", 30));
+            Product product1 = new Product(1, "Product 1", 10);
+            Product product2 = new Product(2, "Product 2", 20);
 
-        // List all products in the inventory
-        List<Product> products = inventoryManager.listProducts();
-        for (Product product : products) {
-            System.out.println(product);
-        }
+            inventoryManager.addProduct(product1);
+            inventoryManager.addProduct(product2);
 
-        // Update the quantity of a product
-        inventoryManager.updateProductQuantity(1, 15);
+            System.out.println("Products in inventory:");
+            inventoryManager.listProducts().forEach(System.out::println);
 
-        // Get a product by id
-        Product product = inventoryManager.getProductById(1);
-        System.out.println("Product 1: " + product);
+            inventoryManager.updateProductQuantity(1, 15);
 
-        // Remove a product from the inventory
-        inventoryManager.removeProduct(2);
+            System.out.println("\nProduct 1 after updating quantity:");
+            inventoryManager.getProductById(1).ifPresent(System.out::println);
 
-        // List all products in the inventory
-        products = inventoryManager.listProducts();
-        for (Product p : products) {
-            System.out.println(p);
+            inventoryManager.removeProduct(2);
+
+            System.out.println("\nProducts in inventory after removing product 2:");
+            inventoryManager.listProducts().forEach(System.out::println);
+        } catch (Exception e) {
+            System.err.println("An error occurred: " + e.getMessage());
+            e.printStackTrace();
         }
     }
-
-
-
-
-
-
-
-
-
-    
 }

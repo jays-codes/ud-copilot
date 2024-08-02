@@ -3,6 +3,8 @@ Jay's proj repo for Github Copilot with Java and SpringBoot training (udemy)
 List below ARE NOT NOTES. They are topics covered as of latest.
 
 proj: basics
+- generated unit tests
+- generated review and improve code
 - generated Inventory management system puc
 - generated code to update tests; add a method
 - generated junit tests
