@@ -1,4 +1,4 @@
-package jayslabs.copilot.clinicalsapi.clinicalsapi;
+package jayslabs.copilot.clinicalsapi;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

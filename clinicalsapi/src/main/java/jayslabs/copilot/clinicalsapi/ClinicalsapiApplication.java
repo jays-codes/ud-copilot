@@ -1,4 +1,4 @@
-package jayslabs.copilot.clinicalsapi.clinicalsapi;
+package jayslabs.copilot.clinicalsapi;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
