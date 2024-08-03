@@ -1,4 +1,4 @@
-package jayslabs.copilot.clinicalsapi.models;
+package jayslabs.copilot.clinicalsapi.model;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class Patient {
     private String firstName;
     private String lastName;
     private int age;
-    
+
     @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
     private List<ClinicalData> clinicalData;
 }
