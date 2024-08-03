@@ -1,4 +1,4 @@
-package jayslabs.copilot.clinicalsapi.model;
+package jayslabs.copilot.clinicalsapi.entity;
 
 import java.sql.Timestamp;
 

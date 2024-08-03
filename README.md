@@ -3,6 +3,8 @@ Jay's proj repo for Github Copilot with Java and SpringBoot training (udemy)
 List below ARE NOT NOTES. They are topics covered as of latest.
 
 proj: clinicalsapi
+- generate Service (interface and impl)
+- generate DTO and mapper classes (interface and impl)
 - modfied model relationships
 - generated models
 - fixed packaging error
