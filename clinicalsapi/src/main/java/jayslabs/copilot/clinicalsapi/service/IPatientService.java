@@ -8,6 +8,6 @@ public interface IPatientService {
     PatientDTO createPatient(PatientDTO patientDTO);
     PatientDTO getPatientById(Long id);
     List<PatientDTO> getAllPatients();
-    PatientDTO updatePatient(Long id, PatientDTO patientDTO);
-    void deletePatient(Long id);
+    boolean updatePatient(PatientDTO patientDTO);
+    boolean deletePatient(Long id);
 }

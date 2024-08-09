@@ -1,13 +1,13 @@
-package jayslabs.copilot.clinicalsapi.mapper;
+package jayslabs.copilot.clinicalsapi.mapper.impl;
 
 import org.springframework.stereotype.Component;
 
 import jayslabs.copilot.clinicalsapi.dto.PatientDTO;
 import jayslabs.copilot.clinicalsapi.entity.Patient;
+import jayslabs.copilot.clinicalsapi.mapper.PatientMapper;
 
 @Component
 public class PatientMapperImpl implements PatientMapper {
-
     @Override
     public PatientDTO toDTO(Patient patient) {
         if (patient == null) {
@@ -19,7 +19,7 @@ public class PatientMapperImpl implements PatientMapper {
         patientDTO.setFirstName(patient.getFirstName());
         patientDTO.setLastName(patient.getLastName());
         patientDTO.setAge(patient.getAge());
-        patientDTO.setClinicalData(patient.getClinicalData());
+        // Add other fields as necessary
 
         return patientDTO;
     }
@@ -35,7 +35,7 @@ public class PatientMapperImpl implements PatientMapper {
         patient.setFirstName(patientDTO.getFirstName());
         patient.setLastName(patientDTO.getLastName());
         patient.setAge(patientDTO.getAge());
-        patient.setClinicalData(patientDTO.getClinicalData());
+        // Add other fields as necessary
 
         return patient;
     }
