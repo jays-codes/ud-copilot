@@ -3,6 +3,9 @@ Jay's proj repo for Github Copilot with Java and SpringBoot training (udemy)
 List below ARE NOT NOTES. They are topics covered as of latest.
 
 proj: clinicalsapi
+- updated getAllPatients() service to return clinical data info; modified cd repo;
+- modified DTOs
+- added datasource to application.yml
 - generated Controller, exposing REST apis for Patient and Clinical Data
 - updated generated Service for Patient and Clinical Data; fixed entity references
 - generate Service (interface and impl)

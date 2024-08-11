@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 
 import jayslabs.copilot.clinicalsapi.dto.ClinicalDataDTO;
 import jayslabs.copilot.clinicalsapi.entity.ClinicalData;
+import jayslabs.copilot.clinicalsapi.entity.Patient;
 import jayslabs.copilot.clinicalsapi.mapper.ClinicalDataMapper;
 import jayslabs.copilot.clinicalsapi.repository.ClinicalDataRepository;
+import jayslabs.copilot.clinicalsapi.repository.PatientRepository;
 import jayslabs.copilot.clinicalsapi.service.IClinicalDataService;
 import lombok.RequiredArgsConstructor;
 
@@ -17,11 +19,16 @@ import lombok.RequiredArgsConstructor;
 public class ClinicalDataServiceImpl implements IClinicalDataService {
 
     private final ClinicalDataRepository clinicalDataRepository;
+    private final PatientRepository patientRepository;
+    
     private final ClinicalDataMapper clinicalDataMapper;
 
     @Override
     public ClinicalDataDTO createClinicalData(ClinicalDataDTO clinicalDataDTO) {
         ClinicalData clinicalData = clinicalDataMapper.toEntity(clinicalDataDTO);
+        Patient patient = patientRepository.findById(clinicalDataDTO.getPatientId())
+            .orElseThrow(() -> new RuntimeException("Patient not found"));
+        clinicalData.setPatient(patient);
         ClinicalData savedClinicalData = clinicalDataRepository.save(clinicalData);
         return clinicalDataMapper.toDto(savedClinicalData);
     }

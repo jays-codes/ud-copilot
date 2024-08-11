@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: clinicalsapi
+  datasource:
+    url: jdbc:mysql://localhost:3306/clinicals
+    username: root
+    password: password
+
+server:
+  servlet:
+    context-path: /clinicalservices

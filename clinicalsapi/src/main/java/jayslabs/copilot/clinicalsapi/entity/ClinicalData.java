@@ -2,6 +2,8 @@ package jayslabs.copilot.clinicalsapi.entity;
 
 import java.sql.Timestamp;
 
+import org.hibernate.annotations.CreationTimestamp;
+
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Column;
@@ -37,6 +39,7 @@ public class ClinicalData {
     @Column(name = "component_value")
     private String componentValue;
 
+    @CreationTimestamp
     @Column(name = "measured_date_time")
     private Timestamp measuredDateTime;
 

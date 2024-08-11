@@ -17,7 +17,7 @@ import jayslabs.copilot.clinicalsapi.service.IClinicalDataService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("/api/clinical-data")
+@RequestMapping("/clinicaldata")
 @RequiredArgsConstructor
 public class ClinicalDataController {
 

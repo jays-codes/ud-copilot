@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import jayslabs.copilot.clinicalsapi.dto.PatientDTO;
-import jayslabs.copilot.clinicalsapi.entity.ClinicalData;
 import jayslabs.copilot.clinicalsapi.entity.Patient;
 import jayslabs.copilot.clinicalsapi.mapper.PatientMapper;
 import jayslabs.copilot.clinicalsapi.repository.ClinicalDataRepository;
@@ -32,13 +31,29 @@ public class PatientServiceImpl implements IPatientService {
     @Override
     public PatientDTO getPatientById(Long id) {
         Patient patient = patientRepository.findById(id).orElseThrow(() -> new RuntimeException("Patient not found"));
-        return patientMapper.toDTO(patient);
+        PatientDTO patientDTO = patientMapper.toDTO(patient);
+        patientDTO.setClinicalDataIds(getClinicalDataByPatientId(id));
+        return patientDTO;
+    }
+
+    private List<Long> getClinicalDataByPatientId(Long id) {  
+        return cdrepo.findByPatientId(id)
+            .stream().map(cd -> cd.getId()).collect(Collectors.toList());
     }
 
     @Override
     public List<PatientDTO> getAllPatients() {
         List<Patient> patients = patientRepository.findAll();
-        return patients.stream().map(patientMapper::toDTO).collect(Collectors.toList());
+
+        List<PatientDTO> patientdtos =  patients.stream().map(patientMapper::toDTO).collect(Collectors.toList());
+        patientdtos.forEach(patientdto -> {
+            patientdto.setClinicalDataIds(
+                getClinicalDataByPatientId(patientdto.getId())
+            );
+        });
+        
+        return patientdtos;
+        //return patients.stream().map(patientMapper::toDTO).collect(Collectors.toList());
     }
 
     @Override
@@ -50,18 +65,9 @@ public class PatientServiceImpl implements IPatientService {
         patient.setLastName(patientDTO.getLastName());
         patient.setAge(patientDTO.getAge());
 
-        List<ClinicalData> clinicalData = getClinicalDataList(patientDTO.getClinicalDataIds());
-        patient.setClinicalData(clinicalData);
-
         patientRepository.save(patient);
 
         return true;
-    }
-
-    private List<ClinicalData> getClinicalDataList(List<Long> clinicalDataIds) {
-        return clinicalDataIds.stream()
-            .map(clinicalDataId -> cdrepo.findById(clinicalDataId).orElseThrow(() -> new RuntimeException("Clinical data not found")))
-            .collect(Collectors.toList());
     }
 
     @Override

@@ -32,12 +32,8 @@ public class ClinicalDataMapperImpl implements ClinicalDataMapper {
         }
 
         ClinicalData clinicalData = new ClinicalData();
-        clinicalData.setId(clinicalDataDTO.getId());
         clinicalData.setComponentName(clinicalDataDTO.getComponentName());
         clinicalData.setComponentValue(clinicalDataDTO.getComponentValue());
-        clinicalData.setMeasuredDateTime(clinicalDataDTO.getMeasuredDateTime());
-        // Assuming you have a method to fetch Patient by ID
-        // clinicalData.setPatient(patientService.findById(clinicalDataDTO.getPatientId()));
 
         return clinicalData;
     }

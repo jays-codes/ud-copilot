@@ -19,6 +19,7 @@ public class PatientMapperImpl implements PatientMapper {
         patientDTO.setFirstName(patient.getFirstName());
         patientDTO.setLastName(patient.getLastName());
         patientDTO.setAge(patient.getAge());
+        //patientDTO.setClinicalDataIds(patient.getClinicalData().stream().map(ClinicalData::getId).collect(Collectors.toList()));
         // Add other fields as necessary
 
         return patientDTO;
@@ -36,7 +37,6 @@ public class PatientMapperImpl implements PatientMapper {
         patient.setLastName(patientDTO.getLastName());
         patient.setAge(patientDTO.getAge());
         // Add other fields as necessary
-
         return patient;
     }
 }
