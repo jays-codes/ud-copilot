@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import jayslabs.copilot.clinicalsapi.dto.PatientDTO;
+import jayslabs.copilot.clinicalsapi.exception.PatientNotFoundException;
 import jayslabs.copilot.clinicalsapi.service.IPatientService;
 import lombok.RequiredArgsConstructor;
 
@@ -25,40 +26,69 @@ public class PatientController {
 
     @PostMapping
     public ResponseEntity<PatientDTO> createPatient(@RequestBody PatientDTO patientDTO) {
-        PatientDTO createdPatient = patientService.createPatient(patientDTO);
-        return ResponseEntity.ok(createdPatient);
+        try {
+            PatientDTO createdPatient = patientService.createPatient(patientDTO);
+            return ResponseEntity.ok(createdPatient);
+        } catch (Exception e) {
+            throw new RuntimeException("Error creating patient");
+        }
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<PatientDTO> getPatientById(@PathVariable Long id) {
-        PatientDTO patient = patientService.getPatientById(id);
-        return ResponseEntity.ok(patient);
+        try {
+            PatientDTO patient = patientService.getPatientById(id);
+            if (patient == null) {
+                throw new PatientNotFoundException("Patient not found with id: " + id);
+            }
+            return ResponseEntity.ok(patient);
+        } catch (PatientNotFoundException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException("Error retrieving patient");
+        }
     }
 
     @GetMapping
     public ResponseEntity<List<PatientDTO>> getAllPatients() {
-        List<PatientDTO> patients = patientService.getAllPatients();
-        return ResponseEntity.ok(patients);
+        try {
+            List<PatientDTO> patients = patientService.getAllPatients();
+            return ResponseEntity.ok(patients);
+        } catch (Exception e) {
+            throw new RuntimeException("Error retrieving patients");
+        }
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<PatientDTO> updatePatient(@PathVariable Long id, @RequestBody PatientDTO patientDTO) {
-        patientDTO.setId(id);
-        boolean updated = patientService.updatePatient(patientDTO);
-        if (updated) {
-            return ResponseEntity.ok(patientDTO);
-        } else {
-            return ResponseEntity.notFound().build();
+        try {
+            patientDTO.setId(id);
+            boolean updated = patientService.updatePatient(patientDTO);
+            if (updated) {
+                return ResponseEntity.ok(patientDTO);
+            } else {
+                throw new PatientNotFoundException("Patient not found with id: " + id);
+            }
+        } catch (PatientNotFoundException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException("Error updating patient");
         }
     }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletePatient(@PathVariable Long id) {
-        boolean deleted = patientService.deletePatient(id);
-        if (deleted) {
-            return ResponseEntity.noContent().build();
-        } else {
-            return ResponseEntity.notFound().build();
+        try {
+            boolean deleted = patientService.deletePatient(id);
+            if (deleted) {
+                return ResponseEntity.noContent().build();
+            } else {
+                throw new PatientNotFoundException("Patient not found with id: " + id);
+            }
+        } catch (PatientNotFoundException e) {
+            throw e;
+        } catch (Exception e) {
+            throw new RuntimeException("Error deleting patient");
         }
     }
 }
