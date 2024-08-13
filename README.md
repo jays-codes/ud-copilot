@@ -3,6 +3,7 @@ Jay's proj repo for Github Copilot with Java and SpringBoot training (udemy)
 List below ARE NOT NOTES. They are topics covered as of latest.
 
 proj: clinicals-app
+- generated react component code to make api call to axios and render as html table
 - generated react components, configured routing in App.js
 - created react-app via npx create-react-app; installed dep: react-router-dom, axios, react-toastify
 
