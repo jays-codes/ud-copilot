@@ -8,6 +8,7 @@ proj: clinicals-app
 - created react-app via npx create-react-app; installed dep: react-router-dom, axios, react-toastify
 
 proj: clinicalsapi
+- generated CORS fix to allow react app to connect to rest apis
 - generated logging code; modified application.yaml to configure logging
 - generated error handling code; GlobalExceptionHandler.java, custom exceptions; modified controller to call custom exceptions
 - updated generated tests
