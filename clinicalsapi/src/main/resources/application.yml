@@ -9,3 +9,12 @@ spring:
 server:
   servlet:
     context-path: /clinicalservices
+
+logging:
+  level:
+    root: INFO
+    jayslabs.copilot.clinicalsapi.controller.PatientController: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+  file:
+    name: logs/application.log

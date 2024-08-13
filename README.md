@@ -3,6 +3,7 @@ Jay's proj repo for Github Copilot with Java and SpringBoot training (udemy)
 List below ARE NOT NOTES. They are topics covered as of latest.
 
 proj: clinicalsapi
+- generated logging code; modified application.yaml to configure logging
 - generated error handling code; GlobalExceptionHandler.java, custom exceptions; modified controller to call custom exceptions
 - updated generated tests
 - generated api tests on Controller, Service
