@@ -2,6 +2,9 @@
 Jay's proj repo for Github Copilot with Java and SpringBoot training (udemy)
 List below ARE NOT NOTES. They are topics covered as of latest.
 
+proj: clinicals-app
+- created react-app via npx create-react-app; installed dep: react-router-dom, axios, react-toastify
+
 proj: clinicalsapi
 - generated logging code; modified application.yaml to configure logging
 - generated error handling code; GlobalExceptionHandler.java, custom exceptions; modified controller to call custom exceptions
