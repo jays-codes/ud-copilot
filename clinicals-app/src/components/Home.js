@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 function Home() {
   const [patients, setPatients] = useState([]);
@@ -38,6 +39,7 @@ function Home() {
           ))}
         </tbody>
       </table>
+      <Link to="/addPatient">Add Patient</Link>
     </div>
   );
 }
