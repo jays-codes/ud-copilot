@@ -26,6 +26,7 @@ function Home() {
             <th>First Name</th>
             <th>Last Name</th>
             <th>Age</th>
+            <th>Add Clinical Data</th> {/* New column */}
           </tr>
         </thead>
         <tbody>
@@ -35,6 +36,9 @@ function Home() {
               <td>{patient.firstName}</td>
               <td>{patient.lastName}</td>
               <td>{patient.age}</td>
+              <td>
+                <Link to={`/addClinicals/${patient.id}`}>Add Clinical Data</Link> {/* Link to add clinical data */}
+              </td>
             </tr>
           ))}
         </tbody>
