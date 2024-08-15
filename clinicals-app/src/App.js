@@ -1,6 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom'; 
+import 'react-toastify/dist/ReactToastify.css';
+import { BrowserRouter as Router, Link, Routes, Route } from 'react-router-dom';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 import AddClinicals from './components/AddClinicals';
 import AddPatient from './components/AddPatient';
 import Home from './components/Home';
@@ -15,6 +18,7 @@ function App() {
           <Route path="/" element={<Home />} />
         </Routes>
       </Router>
+      <ToastContainer />
     </div>
   );
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const AddPatient = () => {
   const [firstName, setFirstName] = useState('');
@@ -28,6 +29,7 @@ const AddPatient = () => {
         "age":age
       });
 
+      toast.success('Patient saved successfully');
       console.log('Patient saved:', response.data);
       // Add any additional logic or UI updates here
     } catch (error) {

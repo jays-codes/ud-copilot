@@ -3,6 +3,7 @@ Jay's proj repo for Github Copilot with Java and SpringBoot training (udemy)
 List below ARE NOT NOTES. They are topics covered as of latest.
 
 proj: clinicals-app
+- generated toastify pop-ups
 - generated react component code to display a form and enable saving of patient details; call create patient api via axios; AddPatient.js component
 - generated react component code to make api call to axios and render as html table
 - generated react components, configured routing in App.js
