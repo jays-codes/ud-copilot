@@ -19,8 +19,27 @@ const AddClinicals = () => {
     fetchPatientDetails();
   }, [patientId]);
 
+  const [componentName, setComponentName] = useState('');
+  const [componentValue, setComponentValue] = useState('');
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:8080/clinicalservices/clinicaldata', {
+        "patientId":patientId,
+        "componentName":componentName,
+        "componentValue":componentValue
+      });
+      console.log('Data saved successfully:', response.data);
+    } catch (error) {
+      console.error('Error saving data:', error);
+    }
+  };
+
   return (
     <div>
+      <h1>Add Clinical Data</h1>
+
       {patient ? (
         <div>
           <h2>{patient.firstName} {patient.lastName}</h2>
@@ -29,6 +48,28 @@ const AddClinicals = () => {
       ) : (
         <p>Loading patient details...</p>
       )}
+      
+      
+
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Component Name:</label>
+          <input
+            type="text"
+            value={componentName}
+            onChange={(e) => setComponentName(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Component Value:</label>
+          <input
+            type="text"
+            value={componentValue}
+            onChange={(e) => setComponentValue(e.target.value)}
+          />
+        </div>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 };
