@@ -3,6 +3,7 @@ Jay's proj repo for Github Copilot with Java and SpringBoot training (udemy)
 List below ARE NOT NOTES. They are topics covered as of latest.
 
 proj: clinicals-app
+- generated code in AddClinicals.js to display patient clinical data in a table
 - generated code in AddClinicals.js to create form for clinical data and submit; use axios api call to save
 - generated code in Home to add column for links to add clinical data; generated AddClinicals.js component to diplay patient details via axios api call
 - generated toastify pop-ups
@@ -12,6 +13,7 @@ proj: clinicals-app
 - created react-app via npx create-react-app; installed dep: react-router-dom, axios, react-toastify
 
 proj: clinicalsapi
+- generated code for new getClinicalDataByPatientId; modified repository, service, and controller
 - generated CORS fix to allow react app to connect to rest apis
 - generated logging code; modified application.yaml to configure logging
 - generated error handling code; GlobalExceptionHandler.java, custom exceptions; modified controller to call custom exceptions

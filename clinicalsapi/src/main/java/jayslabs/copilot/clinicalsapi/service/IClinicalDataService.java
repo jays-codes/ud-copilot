@@ -10,4 +10,5 @@ public interface IClinicalDataService {
     List<ClinicalDataDTO> getAllClinicalData();
     boolean updateClinicalData(ClinicalDataDTO clinicalDataDTO);
     void deleteClinicalData(Long id);
+    List<ClinicalDataDTO> getClinicalDataByPatientId(Long patientId);
 }

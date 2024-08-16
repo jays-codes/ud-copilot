@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 const AddClinicals = () => {
   const { patientId } = useParams();
   const [patient, setPatient] = useState(null);
+  const [clinicalData, setClinicalData] = useState([]);
 
   useEffect(() => {
     const fetchPatientDetails = async () => {
@@ -17,7 +18,19 @@ const AddClinicals = () => {
     };
 
     fetchPatientDetails();
+
+    const fetchClinicalData = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/clinicalservices/clinicaldata/patient/${patientId}`);
+        setClinicalData(response.data);
+      } catch (error) {
+        console.error('Error fetching clinical data:', error);
+      }
+    };
+    fetchClinicalData();
+
   }, [patientId]);
+
 
   const [componentName, setComponentName] = useState('');
   const [componentValue, setComponentValue] = useState('');
@@ -50,6 +63,28 @@ const AddClinicals = () => {
       )}
       
       
+      {clinicalData.length > 0 ? (
+        <table>
+          <thead>
+            <tr>
+              <th>Component Name</th>
+              <th>Component Value</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {clinicalData.map((data, index) => (
+              <tr key={index}>
+                <td>{data.componentName}</td>
+                <td>{data.componentValue}</td>
+                <td>{data.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      ) : (
+        <p>Loading clinical data...</p>
+      )}      
 
       <form onSubmit={handleSubmit}>
         <div>

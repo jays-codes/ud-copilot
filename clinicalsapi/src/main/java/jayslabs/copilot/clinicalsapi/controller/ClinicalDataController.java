@@ -54,4 +54,12 @@ public class ClinicalDataController {
         clinicalDataService.deleteClinicalData(id);
         return ResponseEntity.noContent().build();
     }
+
+    //add api to retrieve clinical data by patient id
+    @GetMapping("/patient/{patientId}")
+    public ResponseEntity<List<ClinicalDataDTO>> getClinicalDataByPatientId(@PathVariable Long patientId) {
+        List<ClinicalDataDTO> clinicalDataList = clinicalDataService.getClinicalDataByPatientId(patientId);
+        return ResponseEntity.ok(clinicalDataList);
+    }
+
 }

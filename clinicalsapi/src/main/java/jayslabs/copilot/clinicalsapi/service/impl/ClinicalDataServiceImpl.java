@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ClinicalDataServiceImpl implements IClinicalDataService {
 
+
     private final ClinicalDataRepository clinicalDataRepository;
     private final PatientRepository patientRepository;
     
@@ -68,4 +69,15 @@ public class ClinicalDataServiceImpl implements IClinicalDataService {
             .orElseThrow(() -> new RuntimeException("Clinical data not found"));
         clinicalDataRepository.delete(clinicalData);
     }
+    
+    @Override
+    public List<ClinicalDataDTO> getClinicalDataByPatientId(Long id) {
+        List<ClinicalData> clinicalDataList = clinicalDataRepository.findByPatientId(id);
+        return clinicalDataList.stream()
+            .map(clinicalDataMapper::toDto)
+            .collect(Collectors.toList());
+    }
+   
+    
+
 }
