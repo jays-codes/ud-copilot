@@ -3,6 +3,7 @@ Jay's proj repo for Github Copilot with Java and SpringBoot training (udemy)
 List below ARE NOT NOTES. They are topics covered as of latest.
 
 proj: clinicals-app
+- commit test
 - generated code in AddClinicals.js to display patient clinical data in a table
 - generated code in AddClinicals.js to create form for clinical data and submit; use axios api call to save
 - generated code in Home to add column for links to add clinical data; generated AddClinicals.js component to diplay patient details via axios api call
