@@ -16,6 +16,17 @@ function Home() {
       });
   }, []);
 
+  const handleDelete = (id) => {
+    axios.delete(`http://localhost:8080/clinicalservices/patients/${id}`)
+      .then(response => {
+        // Remove the deleted patient from the state
+        setPatients(patients.filter(patient => patient.id !== id));
+      })
+      .catch(error => {
+        console.error('There was an error deleting the patient!', error);
+      });
+  };
+
   return (
     <div>
       <h1>Patients</h1>
@@ -26,7 +37,8 @@ function Home() {
             <th>First Name</th>
             <th>Last Name</th>
             <th>Age</th>
-            <th>Add Clinical Data</th> {/* New column */}
+            <th></th> 
+            <th></th> {/* New column for delete link */}
           </tr>
         </thead>
         <tbody>
@@ -38,6 +50,9 @@ function Home() {
               <td>{patient.age}</td>
               <td>
                 <Link to={`/addClinicals/${patient.id}`}>Add Clinical Data</Link> {/* Link to add clinical data */}
+              </td>
+              <td>
+                <button id='deletePatient' onClick={() => handleDelete(patient.id)}>Delete</button> {/* Delete link */}
               </td>
             </tr>
           ))}
