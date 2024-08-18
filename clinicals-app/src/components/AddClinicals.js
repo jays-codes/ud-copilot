@@ -77,7 +77,7 @@ const AddClinicals = () => {
               <tr key={index}>
                 <td>{data.componentName}</td>
                 <td>{data.componentValue}</td>
-                <td>{data.date}</td>
+                <td>{new Date(data.measuredDateTime).toLocaleString()}</td>
               </tr>
             ))}
           </tbody>
