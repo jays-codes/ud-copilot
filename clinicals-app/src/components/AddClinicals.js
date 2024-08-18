@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 const AddClinicals = () => {
   const { patientId } = useParams();
@@ -44,6 +46,8 @@ const AddClinicals = () => {
         "componentValue":componentValue
       });
       console.log('Data saved successfully:', response.data);
+      toast.success('Data saved successfully');
+      window.location.reload();
     } catch (error) {
       console.error('Error saving data:', error);
     }
@@ -64,6 +68,7 @@ const AddClinicals = () => {
       
       
       {clinicalData.length > 0 ? (
+        <form onSubmit={handleSubmit}>
         <table>
           <thead>
             <tr>
@@ -80,31 +85,32 @@ const AddClinicals = () => {
                 <td>{new Date(data.measuredDateTime).toLocaleString()}</td>
               </tr>
             ))}
+            <tr>
+                <td>
+                <input
+                  type="text"
+                  value={componentName}
+                  onChange={(e) => setComponentName(e.target.value)}
+                />
+                </td>
+                <td>
+                <input
+                  type="text"
+                  value={componentValue}
+                  onChange={(e) => setComponentValue(e.target.value)}
+                />
+                </td>
+                <td><button type="submit">Submit</button></td>
+            
+            </tr>
           </tbody>
         </table>
+        </form>
+        
       ) : (
         <p>Loading clinical data...</p>
       )}      
-
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Component Name:</label>
-          <input
-            type="text"
-            value={componentName}
-            onChange={(e) => setComponentName(e.target.value)}
-          />
-        </div>
-        <div>
-          <label>Component Value:</label>
-          <input
-            type="text"
-            value={componentValue}
-            onChange={(e) => setComponentValue(e.target.value)}
-          />
-        </div>
-        <button type="submit">Submit</button>
-      </form>
+      <Link to="/">Go back to home page</Link>
     </div>
   );
 };

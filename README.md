@@ -3,6 +3,8 @@ Jay's proj repo for Github Copilot with Java and SpringBoot training (udemy)
 List below ARE NOT NOTES. They are topics covered as of latest.
 
 proj: clinicals-app
+- added back to home links on AddClinicals and ADDPatient
+- updated clinical data with refresh to render new data on save
 - updated clinical data timestamp to render properly
 - commit test
 - generated code in AddClinicals.js to display patient clinical data in a table
