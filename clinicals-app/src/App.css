@@ -36,3 +36,40 @@
     transform: rotate(360deg);
   }
 }
+
+table {
+  margin: 0 auto;
+}
+
+table, th, td {
+  border: 0px solid black;
+  border-collapse: collapse;
+} 
+
+th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: center;
+  background-color: #282c34;
+  color: white;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+  background-color: #0a360c15;
+}
+
+button {
+  background-color: #282c34;
+  color: white;
+  padding: 10px 20px;
+  margin: 8px 0;
+  border: none;
+  display: inline-block;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+}

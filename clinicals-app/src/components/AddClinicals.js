@@ -68,7 +68,6 @@ const AddClinicals = () => {
       
       
       {clinicalData.length > 0 ? (
-        <form onSubmit={handleSubmit}>
         <table>
           <thead>
             <tr>
@@ -85,8 +84,18 @@ const AddClinicals = () => {
                 <td>{new Date(data.measuredDateTime).toLocaleString()}</td>
               </tr>
             ))}
-            <tr>
-                <td>
+          </tbody>
+        </table>
+        
+      ) : (
+        <p>Loading clinical data...</p>
+      )}
+
+    <form onSubmit={handleSubmit}>
+      <table>
+      <tbody>
+      <tr>
+        <td>
                 <input
                   type="text"
                   value={componentName}
@@ -101,15 +110,10 @@ const AddClinicals = () => {
                 />
                 </td>
                 <td><button type="submit">Submit</button></td>
-            
-            </tr>
+            </tr>      
           </tbody>
-        </table>
-        </form>
-        
-      ) : (
-        <p>Loading clinical data...</p>
-      )}      
+      </table>     
+    </form>
       <Link to="/">Go back to home page</Link>
     </div>
   );
