@@ -2,7 +2,10 @@
 Jay's proj repo for Github Copilot with Java and SpringBoot training (udemy)
 List below ARE NOT NOTES. They are topics covered as of latest.
 
-proj: clinicals-app
+proj: flightreservation 
+- init project generation (sb 3.3.2, jdk 21, data jpa, lombok, thymeleaf, web, mysql)
+
+proj: clinicals-app (uses clinicalsapi)
 - generated code in Home.js to delete Patient; modified styling
 - added styling
 - added back to home links on AddClinicals and ADDPatient
