@@ -3,6 +3,7 @@ Jay's proj repo for Github Copilot with Java and SpringBoot training (udemy)
 List below ARE NOT NOTES. They are topics covered as of latest.
 
 proj: flightreservation 
+- generated code for Mapper interface and impl
 - generated code for DTOs
 - generated code for jpa repos
 - generated code for entities: packages, Flight, Passenger, Entity; uses jakarta persistence, lombok; generated comparators (Reservation)
