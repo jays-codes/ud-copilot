@@ -3,6 +3,7 @@ Jay's proj repo for Github Copilot with Java and SpringBoot training (udemy)
 List below ARE NOT NOTES. They are topics covered as of latest.
 
 proj: flightreservation 
+- generate initial code for flight controller to display thymeleaf page; modified entities to use @Table
 - generated code for Flight Service intereface and impl
 - generated code for Mapper interface and impl
 - generated code for DTOs

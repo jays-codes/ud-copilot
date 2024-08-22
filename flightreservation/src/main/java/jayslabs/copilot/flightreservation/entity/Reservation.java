@@ -11,10 +11,12 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "RESERVATION")
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
