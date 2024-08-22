@@ -3,6 +3,7 @@ Jay's proj repo for Github Copilot with Java and SpringBoot training (udemy)
 List below ARE NOT NOTES. They are topics covered as of latest.
 
 proj: flightreservation 
+- generated code for jpa repos
 - generated code for entities: packages, Flight, Passenger, Entity; uses jakarta persistence, lombok; generated comparators (Reservation)
 - init project generation (sb 3.3.2, jdk 21, data jpa, lombok, thymeleaf, web, mysql)
 
