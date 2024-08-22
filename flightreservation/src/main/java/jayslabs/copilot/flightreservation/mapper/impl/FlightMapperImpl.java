@@ -16,7 +16,6 @@ public class FlightMapperImpl implements FlightMapper {
         }
 
         Flight entity = new Flight();
-        entity.setId(dto.getId());
         entity.setFlightNumber(dto.getFlightNumber());
         entity.setOperatingAirlines(dto.getOperatingAirlines());
         entity.setDepartureCity(dto.getDepartureCity());
